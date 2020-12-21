@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -12,6 +12,13 @@ import { yourBusinessData } from '../../helpers/chartData';
 import styles from './styles';
 
 function Home() {
+  const [yourBusinessDimension, setYourBusinessDimension] = useState({
+    width: null,
+    height: null,
+  });
+  const [yourCompoetitorDimension, setCompetitorDimension] = useState(null);
+  const [goalsDimension, setgoalsDimension] = useState(null);
+
   const navigation = useNavigation();
 
   function handleGoalsPerformancePress() {
@@ -44,8 +51,18 @@ function Home() {
               </Text>
             </View>
           </View>
-          <View style={styles.businessAnalyticsChart}>
-            <CustomBarChart charData={yourBusinessData} />
+          <View
+            onLayout={({
+              nativeEvent: {
+                layout: { width, height },
+              },
+            }) => setYourBusinessDimension({ width, height })}
+            style={styles.businessAnalyticsChart}
+          >
+            <CustomBarChart
+              chartData={yourBusinessData}
+              chartDimension={yourBusinessDimension}
+            />
           </View>
         </View>
         <View style={styles.businessAnalyticsContainer}>
