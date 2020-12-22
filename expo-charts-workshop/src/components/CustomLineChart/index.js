@@ -1,17 +1,15 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
-import { BarChart } from 'react-native-svg-charts';
+import { LineChart } from 'react-native-svg-charts';
 
-function CustomBarChart({ chartData, chartDimension }) {
+function CustomLineChart({ chartData, chartDimension }) {
   return chartDimension ? (
-    <BarChart
+    <LineChart
       data={chartData}
       svg={{
-        fill: 'rgba(175, 220, 139, 0.7)',
+        strokeWidth: 4,
+        stroke: 'rgba(175, 220, 139, 0.7)',
       }}
-      yMin={0}
-      spacingInner={0.25}
-      yAccessor={({ item }) => item.value}
       style={{
         borderRadius: 8,
         height: chartDimension.height,
@@ -23,4 +21,4 @@ function CustomBarChart({ chartData, chartDimension }) {
   );
 }
 
-export default CustomBarChart;
+export default CustomLineChart;

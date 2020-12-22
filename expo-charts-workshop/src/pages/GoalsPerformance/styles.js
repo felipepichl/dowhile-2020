@@ -22,9 +22,32 @@ const styles = StyleSheet.create({
   goalsChart: {
     flex: 1,
     width: '100%',
-    backgroundColor: '#ddd',
-    alignSelf: 'center',
+    // backgroundColor: '#ddd',
+    // alignSelf: 'center',
     marginVertical: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  goalsChartWithData: {
+    backgroundColor: 'transparent',
+  },
+  goalsChartWithoutData: {
+    backgroundColor: '#f0f0f0',
+    borderRadius: 8,
+    justifyContent: 'center',
+  },
+  goalsChartContainer: {
+    position: 'absolute',
+    alignItems: 'center',
+  },
+  goalsChartTitle: {
+    color: '#2b2b73',
+    fontWeight: 'bold',
+    fontSize: 72,
+  },
+  goalsChartSubtitle: {
+    color: '#2b2b73',
+    fontSize: 15,
   },
   goalsDetailsContainer: {
     backgroundColor: '#F5F6FB',

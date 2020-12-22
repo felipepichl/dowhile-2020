@@ -89,6 +89,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ddd',
     marginVertical: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  goalsChartWithData: {
+    backgroundColor: 'transparent',
+  },
+  goalsChartWithoutData: {
+    backgroundColor: '#f0f0f0',
+    borderRadius: 8,
+    justifyContent: 'center',
   },
   reportButton: {
     backgroundColor: '#F6B64F',

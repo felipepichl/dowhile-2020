@@ -1,15 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { View, Text } from 'react-native';
+
+import CustomProgressChart from '../../components/CustomProgressChart';
 
 import styles from './styles';
 
 function GoalsPerformance() {
+  const [goalsDimension, setGoalsDimension] = useState({
+    width: null,
+    height: null,
+  });
+
   return (
     <View style={styles.container}>
       <View style={styles.goalsContainer}>
         <Text style={styles.goalsTitle}>Desepenho das Metas</Text>
-        <View style={styles.goalsChart} />
+        <View
+          onLayout={({
+            nativeEvent: {
+              layout: { width, height },
+            },
+          }) => setGoalsDimension({ width, height })}
+          style={[
+            styles.goalsChart,
+            goalsDimension
+              ? styles.goalsChartWithData
+              : styles.goalsChartWithoutData,
+          ]}
+        >
+          <CustomProgressChart
+            chartData={0.75}
+            chartDimension={goalsDimension}
+          />
+          {goalsDimension && (
+            <View style={styles.goalsChartContainer}>
+              <Text style={styles.goalsChartTitle}>75%</Text>
+              <Text style={styles.goalsChartSubtitle}>R$ 1.050 / semana</Text>
+            </View>
+          )}
+        </View>
         <View style={styles.goalsDetailsContainer}>
           <View style={styles.thisMonthGoalsContainer}>
             <Text style={styles.thisMonthGoalsTitle}>Esse mês</Text>

@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, Text, View } from 'react-native';
 
 import { RectButton } from 'react-native-gesture-handler';
 
 import { AntDesign } from '@expo/vector-icons';
 
+import CustomLineChart from '../../components/CustomLineChart';
+
+import { productReportData } from '../../helpers/chartData';
+
 import styles from './styles';
 
 import featuredImage from '../../assets/images/bike.jpg';
 
 function ProductReport() {
+  const [productReportDimension, setProductReportDimension] = useState({
+    width: null,
+    height: null,
+  });
   return (
     <View style={styles.container}>
       <View style={styles.featuredContainer}>
@@ -37,7 +45,24 @@ function ProductReport() {
           Esse é um sumário das vendas do seu produto em uma semana de acordo
           com a renda que você teve
         </Text>
-        <View style={styles.reportChart} />
+        <View
+          onLayout={({
+            nativeEvent: {
+              layout: { width, height },
+            },
+          }) => setProductReportDimension({ width, height })}
+          style={[
+            styles.reportChart,
+            productReportDimension
+              ? styles.goalsChartWithData
+              : styles.goalsChartWithoutData,
+          ]}
+        >
+          <CustomLineChart
+            chartData={productReportData}
+            chartDimension={productReportDimension}
+          />
+        </View>
         <RectButton style={styles.reportButton}>
           <Text style={styles.reportButtonText}>Ver Relatório Completo</Text>
         </RectButton>
